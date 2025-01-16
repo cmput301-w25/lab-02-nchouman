@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
         cityList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
+        // When add button is pressed, you can see the input text box, and the confirm button
         add_button = findViewById(R.id.add_button);
         confirm_button = findViewById(R.id.confirm_button);
         add_button.setOnClickListener(v -> {
@@ -60,19 +61,19 @@ public class MainActivity extends AppCompatActivity {
                     confirm_button.setVisibility(View.VISIBLE);
         });
 
+        // Adds city name to list once pressing confirm.
         confirm_button.setOnClickListener(v -> {
-            String cityName = input_text.getText().toString().trim();
+            String new_city_name = input_text.getText().toString().trim();
             if (input_text.length() > 0) {
-                dataList.add(cityName);
+                dataList.add(new_city_name);
                 cityAdapter.notifyDataSetChanged();
                 input_text.setText("");
                 input_text.setVisibility(View.GONE);
                 confirm_button.setVisibility(View.GONE);
-            } else {
-                Toast.makeText(this,"Enter a city name", Toast.LENGTH_SHORT).show();
             }
         });
 
+        // Delete button, takes the item pressed at its given position in the list and deletes it.
         delete_button = findViewById(R.id.delete_button);
         delete_button.setOnClickListener(v -> {
             int pos = cityList.getCheckedItemPosition();
